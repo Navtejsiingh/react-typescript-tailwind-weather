@@ -1,5 +1,8 @@
-import React from 'react'
-const TopButtons: React.FC = () => {
+import React, { Dispatch, SetStateAction } from 'react'
+interface SetQuery {
+    setQuery: Dispatch<SetStateAction<any>>
+}
+const TopButtons: React.FC<SetQuery> = ({ setQuery }) => {
     const cities = [
         {
             id: 1,
@@ -25,7 +28,7 @@ const TopButtons: React.FC = () => {
     return (
         <div className='flex  items-center justify-around my-6'>
             {cities.map((city) => (
-                <button key={city.id} className='text-white text-lg font-medium'>{city.title}</button>
+                <button onClick={() => setQuery({ q: city.title })} key={city.id} className='text-white text-lg font-medium  transition ease-in-out hover:scale-125'>{city.title}</button>
             ))}
         </div>
     )
